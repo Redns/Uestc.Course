@@ -2,41 +2,34 @@
 
 @using Icons = Microsoft.FluentUI.AspNetCore.Components.Icons
 
-<PageTitle>Home</PageTitle>
+@* <FluentInputFile Id="my-file-uploader" *@
+@*                  Mode="InputFileMode.SaveToTemporaryFolder" *@
+@*                  Multiple="true" *@
+@*                  MaximumFileCount="4" *@
+@*                  MaximumFileSize="@(10*1024*1024)" *@
+@*                  Accept="image/*" *@
+@*                  @bind-ProgressPercent="@ProgressPercent" *@
+@*                  OnCompleted="@OnCompletedAsync" *@
+@*                  Style="height: 300px;"> *@
+@*     <ChildContent> *@
+@*         <label for="my-file-uploader"> *@
+@*             <FluentIcon Value="@(new @Icons.Regular.Size24.ArrowUpload())" /> *@
+@*         </label> *@
 
-<FluentCard>
-    <h2>Hello World!</h2>
-    <FluentButton Appearance="@Appearance.Accent">Click Me</FluentButton>
-</FluentCard>
+@*         <div> *@
+@*             Drag files here you wish to upload, *@
+@*             or <label for="my-file-uploader">browse</label> *@
+@*             for them<span style="color: red;">*</span>. *@
+@*             <br /> *@
+@*             <em>Maximum of 4 files allowed.</em> *@
+@*         </div> *@
 
-<FluentInputFile Id="my-file-uploader"
-                 Mode="InputFileMode.SaveToTemporaryFolder"
-                 Multiple="true"
-                 MaximumFileCount="4"
-                 MaximumFileSize="@(10*1024*1024)"
-                 Accept="image/*"
-                 @bind-ProgressPercent="@ProgressPercent"
-                 OnCompleted="@OnCompletedAsync"
-                 Style="height: 300px;">
-    <ChildContent>
-        <label for="my-file-uploader">
-            <FluentIcon Value="@(new @Icons.Regular.Size24.ArrowUpload())" />
-        </label>
-
-        <div>
-            Drag files here you wish to upload,
-            or <label for="my-file-uploader">browse</label>
-            for them<span style="color: red;">*</span>.
-            <br />
-            <em>Maximum of 4 files allowed.</em>
-        </div>
-
-        <div>
-            <br />
-            <a href="#">Read more about our supported file formats.</a>
-        </div>
-    </ChildContent>
-</FluentInputFile>
+@*         <div> *@
+@*             <br /> *@
+@*             <a href="#">Read more about our supported file formats.</a> *@
+@*         </div> *@
+@*     </ChildContent> *@
+@* </FluentInputFile> *@
 
 @if (Files.Any())
 {

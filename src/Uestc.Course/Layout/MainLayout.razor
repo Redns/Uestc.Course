@@ -1,20 +1,28 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<FluentLayout>
+    <FluentHeader Style="background-color:#F6F8FA; border-bottom:solid; border-width:1px; border-color:#D1D9E0;">
+        <FluentStack Orientation="Orientation.Horizontal" VerticalAlignment="VerticalAlignment.Center" >
+            <img src="icon.png" height="40" />
+            <FluentLabel Typo="Typography.H3" Style="font-family:'Times New Roman'; font-style:italic;" Weight="FontWeight.Bold">Course</FluentLabel>
+            <FluentSpacer />
+            <FluentSearch Size="40" Appearance="FluentInputAppearance.Outline" />
+            <FluentButton IconStart="@(new Icons.Regular.Size24.Add())" Appearance="Appearance.Outline"/>
+            <FluentButton IconStart="@(new Icons.Regular.Size24.Alert())" Appearance="Appearance.Outline"/>
+            <FluentPersona StatusTitle="He is available"
+                           Image="https://bbs.uestc.edu.cn/uc_server/data/avatar/000/25/68/25_avatar_middle.jpg"
+                           ImageSize="35px">
+            </FluentPersona>
+        </FluentStack>
+    </FluentHeader>
+    <div style="height:100%;">
+        @Body
     </div>
+    <FluentFooter Style="justify-content:center">
+        <FluentLabel MarginBlock="10px" Typo="Typography.Subject">Powered by Uestc.Course ©2025 Redns, MIT License.</FluentLabel>
+    </FluentFooter>
+</FluentLayout>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
 <FluentToastProvider />
 <FluentDialogProvider />
 <FluentTooltipProvider />

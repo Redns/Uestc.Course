@@ -26,4 +26,8 @@
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Uestc.Course.Core\Uestc.Course.Core.csproj" />
+  </ItemGroup>
+
 </Project>

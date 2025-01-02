@@ -8,8 +8,8 @@ self.addEventListener('fetch', event => event.respondWith(onFetch(event)));
 
 const cacheNamePrefix = 'offline-cache-';
 const cacheName = `${cacheNamePrefix}${self.assetsManifest.version}`;
-const offlineAssetsInclude = [ /\.dll$/, /\.pdb$/, /\.wasm/, /\.html/, /\.js$/, /\.json$/, /\.css$/, /\.woff$/, /\.png$/, /\.jpe?g$/, /\.gif$/, /\.ico$/, /\.blat$/, /\.dat$/ ];
-const offlineAssetsExclude = [ /^service-worker\.js$/ ];
+const offlineAssetsInclude = [/\.dll$/, /\.pdb$/, /\.wasm/, /\.html/, /\.js$/, /\.json$/, /\.css$/, /\.woff$/, /\.png$/, /\.jpe?g$/, /\.gif$/, /\.ico$/, /\.blat$/, /\.dat$/];
+const offlineAssetsExclude = [/^service-worker\.js$/];
 
 // Replace with your base path if you are hosting on a subfolder. Ensure there is a trailing '/'.
 const base = "/";
@@ -19,22 +19,12 @@ const manifestUrlList = self.assetsManifest.assets.map(asset => new URL(asset.ur
 async function onInstall(event) {
     console.info('Service worker: Install');
 
-    // // Fetch and cache all matching items from the assets manifest
-    // const assetsRequests = self.assetsManifest.assets
-    //     .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
-    //     .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
-    //     .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
-    // await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
     // Fetch and cache all matching items from the assets manifest
     const assetsRequests = self.assetsManifest.assets
-    .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
-    .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
-    .map(asset => new Request(asset.url, { integrity: asset.hash }));
-    await caches.open(cacheName).then(cache => {
-    return fetch('/offline')
-        .then(response => cache.put('/offline', new Response(response.body)));
-    });
-    notifyNewVersion(); // this is optional, function to notify for a new version
+        .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
+        .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
+        .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
+    await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
 }
 
 async function onActivate(event) {
@@ -60,14 +50,14 @@ async function onFetch(event) {
         const cache = await caches.open(cacheName);
         cachedResponse = await cache.match(request);
 
-        // if (cachedResponse && cachedResponse.redirected) {
-        //     cachedResponse = new Response(cachedResponse.body,
-        //                                  {
-        //                                      headers: cachedResponse.headers,
-        //                                      status: cachedResponse.status,
-        //                                      statusText: cachedResponse.statusText
-        //                                  });
-        // }
+        if (cachedResponse && cachedResponse.redirected) {
+            cachedResponse = new Response(cachedResponse.body,
+                {
+                    headers: cachedResponse.headers,
+                    status: cachedResponse.status,
+                    statusText: cachedResponse.statusText
+                });
+        }
     }
 
     return cachedResponse || fetch(event.request);

@@ -1,6 +1,6 @@
 {
-  "name": "Uestc.Course",
-  "short_name": "Uestc.Course",
+  "name": "UCourse",
+  "short_name": "UCourse",
   "id": "./",
   "start_url": "./",
   "display": "standalone",

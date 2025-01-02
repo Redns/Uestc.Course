@@ -1,50 +1,33 @@
 ﻿@page "/"
 
-@using Icons = Microsoft.FluentUI.AspNetCore.Components.Icons
+<FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
+    <FluentStack Orientation="Orientation.Horizontal" Style="padding:20px 0 10px 0;" HorizontalAlignment="HorizontalAlignment.Center" Wrap>
+        <FluentSelect TOption="string" @bind-SelectedOption="@School" Width="180px">
+            <FluentOption Value="1">所有学院</FluentOption>
+            <FluentOption Value="2">信息与通信工程学院</FluentOption>
+            <FluentOption Value="3">自动化学院</FluentOption>
+            <FluentOption Value="4">微电子学院</FluentOption>
+        </FluentSelect>
+        <FluentSelect TOption="string" Width="260px;">
+            <FluentOption Value="1">所有课程</FluentOption>
+            <FluentOption Value="2">通信工程</FluentOption>
+            <FluentOption Value="3">微积分</FluentOption>
+            <FluentOption Value="4">毛泽东思想和中国特色社会主义理论体系概论</FluentOption>
+        </FluentSelect>
+        <FluentDatePicker View="CalendarViews.Years" Style="width:100px;"/>
+        <FluentSelect TOption="string" Width="120px">
+            <FluentOption Value="1">所有类型</FluentOption>
+            <FluentOption Value="1">教材</FluentOption>
+            <FluentOption Value="2">作业</FluentOption>
+            <FluentOption Value="3">实验</FluentOption>
+            <FluentOption Value="3">历年试题</FluentOption>
+            <FluentOption Value="4">复习资料</FluentOption>
+        </FluentSelect>
+    </FluentStack>
+    <FluentSearch Size="100" Placeholder="课程名称、关键字、标签、时间……" />
+    <FluentLabel>@School</FluentLabel>
+</FluentStack>
 
-@* <FluentInputFile Id="my-file-uploader" *@
-@*                  Mode="InputFileMode.SaveToTemporaryFolder" *@
-@*                  Multiple="true" *@
-@*                  MaximumFileCount="4" *@
-@*                  MaximumFileSize="@(10*1024*1024)" *@
-@*                  Accept="image/*" *@
-@*                  @bind-ProgressPercent="@ProgressPercent" *@
-@*                  OnCompleted="@OnCompletedAsync" *@
-@*                  Style="height: 300px;"> *@
-@*     <ChildContent> *@
-@*         <label for="my-file-uploader"> *@
-@*             <FluentIcon Value="@(new @Icons.Regular.Size24.ArrowUpload())" /> *@
-@*         </label> *@
-
-@*         <div> *@
-@*             Drag files here you wish to upload, *@
-@*             or <label for="my-file-uploader">browse</label> *@
-@*             for them<span style="color: red;">*</span>. *@
-@*             <br /> *@
-@*             <em>Maximum of 4 files allowed.</em> *@
-@*         </div> *@
-
-@*         <div> *@
-@*             <br /> *@
-@*             <a href="#">Read more about our supported file formats.</a> *@
-@*         </div> *@
-@*     </ChildContent> *@
-@* </FluentInputFile> *@
-
-@if (Files.Any())
-{
-        <h4>File(s) uploaded:</h4>
-        <ul>
-        @foreach (var file in Files)
-        {
-                    <li>
-                        <b>@file.Name</b> 🔹
-                @($"{Decimal.Divide(file.Size, 1024):N} KB") 🔹
-                @file.ContentType 🔹
-                @file.LocalFile?.FullName
-                @file.ErrorMessage
-                    </li>
-        }
-        </ul>
+@code {
+    public string School { get; set; } = string.Empty;
 }
-

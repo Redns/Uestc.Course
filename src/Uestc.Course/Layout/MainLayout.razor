@@ -6,6 +6,8 @@
             <img src="icon.png" height="40" />
             <FluentLabel Typo="Typography.H3" Style="font-family:'Times New Roman'; font-style:italic;" Weight="FontWeight.Bold">UCourse</FluentLabel>
             <FluentSpacer />
+            <FluentSearch Size="80" Placeholder="课程名称、关键字、标签、时间……" />
+            <FluentSpacer />
             <FluentButton IconStart="@(new Icons.Regular.Size24.Add())" Appearance="Appearance.Outline"/>
             <FluentButton IconStart="@(new Icons.Regular.Size24.Alert())" Appearance="Appearance.Outline"/>
             <FluentPersona StatusTitle="He is available"
@@ -14,10 +16,9 @@
             </FluentPersona>
         </FluentStack>
     </FluentHeader>
-    @Body
-    <FluentFooter Style="justify-content:center">
-        <FluentLabel MarginBlock="10px" Typo="Typography.Subject">Powered by Uestc.Course ©2025 Redns, MIT License.</FluentLabel>
-    </FluentFooter>
+    <FluentStack Orientation="Orientation.Vertical" Style="position: absolute; top: 50px; bottom: 0; left: 0; right:0; user-select: none;">
+        @Body
+    </FluentStack>
 </FluentLayout>
 
 <FluentToastProvider />

@@ -1,20 +1,22 @@
 ﻿@page "/"
 
-<FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
-    <FluentStack Orientation="Orientation.Horizontal" Style="padding:20px 0 10px 0;" HorizontalAlignment="HorizontalAlignment.Center" Wrap>
+<FluentStack Orientation="Orientation.Vertical" Style="padding:25px;">
+    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Left" Wrap>
         <FluentSelect TOption="string" @bind-SelectedOption="@School" Width="180px">
             <FluentOption Value="1">所有学院</FluentOption>
             <FluentOption Value="2">信息与通信工程学院</FluentOption>
             <FluentOption Value="3">自动化学院</FluentOption>
             <FluentOption Value="4">微电子学院</FluentOption>
         </FluentSelect>
-        <FluentSelect TOption="string" Width="260px;">
+        <FluentSelect TOption="string" Width="200px;">
             <FluentOption Value="1">所有课程</FluentOption>
             <FluentOption Value="2">通信工程</FluentOption>
             <FluentOption Value="3">微积分</FluentOption>
             <FluentOption Value="4">毛泽东思想和中国特色社会主义理论体系概论</FluentOption>
         </FluentSelect>
-        <FluentDatePicker View="CalendarViews.Years" Style="width:100px;"/>
+        <FluentDatePicker View="CalendarViews.Years" Style="width:85px;" />
+        <FluentLabel Typo="Typography.H4">-</FluentLabel>
+        <FluentDatePicker View="CalendarViews.Years" Style="width:85px;" />
         <FluentSelect TOption="string" Width="120px">
             <FluentOption Value="1">所有类型</FluentOption>
             <FluentOption Value="1">教材</FluentOption>
@@ -24,8 +26,13 @@
             <FluentOption Value="4">复习资料</FluentOption>
         </FluentSelect>
     </FluentStack>
-    <FluentSearch Size="100" Placeholder="课程名称、关键字、标签、时间……" />
-    <FluentLabel>@School</FluentLabel>
+    <FluentGrid Justify="JustifyContent.FlexStart" Spacing="10" AdaptiveRendering>
+        <FluentGridItem xs="12">
+            <FluentCard>
+                <FluentButton>Hello</FluentButton>
+            </FluentCard>
+        </FluentGridItem>
+    </FluentGrid>
 </FluentStack>
 
 @code {
